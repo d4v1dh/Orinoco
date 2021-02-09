@@ -1,0 +1,52 @@
+@font-face {
+    font-family: "retroking";
+    src: url(../fonts/retroking/Retroking.ttf);
+}
+$shadow: 4px 4px 15px -3px rgba(0, 0, 0, 0.30);
+
+
+* {
+    color: black;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+}
+
+body {
+    height: 90vh;
+    width: 100vw;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    .navbar-brand {
+        font-family: 'retroking';
+    }
+    #order-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+footer {
+    background-color: #e0dfdf;
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        ul {
+            font-size: 2em;
+            .bi {
+                color: black;
+            }
+        }
+        a {
+            color: black ;
+        }
+    }
+}

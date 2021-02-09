@@ -1,0 +1,54 @@
+@import 'global';
+
+#carouselControls {
+    overflow: hidden;
+    .carousel-item {
+        height: 40vw;
+        img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+        }
+    }
+}
+
+
+.figureClass {
+    display: flex;
+    flex-direction: row;
+    height: 200px;
+    width: 100%;
+    align-items: center;
+    background-color: #F6F6F6;
+    border-radius: 10px;
+    box-shadow: $shadow;    
+}
+
+.figurePicture {
+    height: 100%;
+    width: 30%;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.figureFigcaption {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    margin: 0 20px 0 20px;
+}
+
+.figName {
+    font-weight: bold;
+}
+
+.figDesc {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

@@ -1,0 +1,40 @@
+@import 'global';
+
+.productContainer {
+    display: flex;
+    height: inherit;
+    align-items: center;
+}
+
+.imgContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.textContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 4vw;
+    height: fit-content;
+    div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+.productImg {
+    width: 100%;
+}
+
+section {
+    height: 100%;
+    background-color: #F6F6F6;
+}
+
+.optionSelect {
+    width: 50%;
+}

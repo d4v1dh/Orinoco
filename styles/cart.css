@@ -1,0 +1,200 @@
+@font-face {
+  font-family: "retroking";
+  src: url(../fonts/retroking/Retroking.ttf);
+}
+
+* {
+  color: black;
+}
+
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+body {
+  height: 90vh;
+  width: 100vw;
+}
+
+nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+}
+
+nav .navbar-brand {
+  font-family: 'retroking';
+}
+
+nav #order-button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+footer {
+  background-color: #e0dfdf;
+}
+
+footer .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+footer .container ul {
+  font-size: 2em;
+}
+
+footer .container ul .bi {
+  color: black;
+}
+
+footer .container a {
+  color: black;
+}
+
+section {
+  height: 100%;
+  background-color: #F6F6F6;
+}
+
+.checkoutContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: white;
+  margin: 0 0 0 5%;
+  padding: 5% 0 5% 0;
+  border-radius: 15px;
+  -webkit-box-shadow: 4px 4px 15px -3px rgba(0, 0, 0, 0.3);
+          box-shadow: 4px 4px 15px -3px rgba(0, 0, 0, 0.3);
+}
+
+.checkoutContainer div {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 80%;
+}
+
+.checkoutContainer div button {
+  width: 100%;
+}
+
+table {
+  width: 65% !important;
+}
+
+.price {
+  display: inline-block;
+  width: 50%;
+  text-align: right;
+  padding-right: 10px;
+}
+
+.productContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: inherit;
+}
+
+.popup-container {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.popup {
+  border-radius: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: absolute;
+  background-color: #F6F6F6;
+}
+
+@media (max-width: 767px) {
+  table {
+    width: 100% !important;
+  }
+  .productContainer {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .checkoutContainer {
+    -webkit-box-flex: unset;
+        -ms-flex: unset;
+            flex: unset;
+    margin: 0 auto 0 auto;
+    padding: 5% 5% 5% 5%;
+    width: 100%;
+  }
+}
+/*# sourceMappingURL=cart.css.map */
