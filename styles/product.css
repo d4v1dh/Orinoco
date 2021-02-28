@@ -133,6 +133,9 @@ footer .container a {
 
 .productImg {
   width: 100%;
+  -webkit-box-shadow: 4px 4px 15px -3px rgba(0, 0, 0, 0.3);
+          box-shadow: 4px 4px 15px -3px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
 }
 
 section {

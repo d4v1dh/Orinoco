@@ -1,63 +1,30 @@
 let cartProduct = JSON.parse(localStorage.getItem("cart"));
 
-console.log(cartProduct);
-
-//for (i in cartProduct) {
-//    console.log('test');
-//}
 let cartTotal = 0;
-
-function clearCart() {
-  localStorage.clear();
-  location.reload();
-}
 
 window.onload = function () {
   if (cartProduct !== null) {
-    let array = ["Name", "Quantity", "Price"];
-    let tableBody = document.createElement("table");
-    tableBody.classList.add("table", "table-striped", "table-hover");
-    let tableHeader = document.createElement("thead");
-    tableBody.appendChild(tableHeader);
-    let tableLineHeader = document.createElement("tr");
-    for (j in array) {
-      let tableCellHeader = document.createElement("th");
-      tableCellHeader.textContent = array[j];
-      tableLineHeader.append(tableCellHeader);
-    }
-    tableHeader.append(tableLineHeader);
-    tableBody.append(tableHeader);
-  
-    let tableBodyTest = document.createElement("tbody");
-    for (i in cartProduct) {
-      let valueArray = Object.values(cartProduct[i]); // convert parameters to array
-      let tableLine = document.createElement("tr");
-      for (let x = 0; x < 3; x++) {
-        let tableCell = document.createElement("th");
-        if (x == 2) {
-          let price = Math.round(valueArray[x] * valueArray[x - 1]) / 100;
-          cartTotal = price + cartTotal;
-          tableCell.textContent = Math.round(valueArray[x] / 100) + "$";
-        } else {
-          tableCell.textContent = valueArray[x];
-        }
-        tableLine.appendChild(tableCell);
-      }
-      tableBodyTest.appendChild(tableLine);
-    }
-    tableBody.appendChild(tableBodyTest);
+    // creation of table
+    let table = document.createElement("table");
+    table.classList.add("table", "table-striped", "table-hover");
 
-  
+    // create TableHeader and append it to the table
+    table.append(createTableHeader());
+
+    // create TableBody and append it to the table
+    table.append(createTableBody());
+
+
     let checkoutContainer = document.createElement("div");
     checkoutContainer.classList.add("checkoutContainer");
-  
+
     let priceContainer = document.createElement("span");
     priceContainer.textContent = "Order total : " + cartTotal + "$";
     checkoutContainer.appendChild(priceContainer);
-  
+
     let btnContainer = document.createElement("div");
-    btnContainer.classList.add('mt-3');
-    
+    btnContainer.classList.add("mt-3");
+
     let checkoutBtn = document.createElement("button");
     checkoutBtn.setAttribute("type", "button");
     checkoutBtn.setAttribute("data-bs-toggle", "modal");
@@ -74,76 +41,122 @@ window.onload = function () {
     btnContainer.appendChild(clearBtn);
 
     checkoutContainer.appendChild(btnContainer);
-  
-    document.getElementsByClassName("container")[1].appendChild(tableBody);
+
+    document.getElementsByClassName("container")[1].appendChild(table);
     document
       .getElementsByClassName("container")[1]
       .appendChild(checkoutContainer);
-  }
-  else {
+  } else {
     let noProductError = document.createElement("p");
-    noProductError.textContent = "It doesn't seems like you have any items in your cart !"
+    noProductError.textContent =
+      "It doesn't seems like your cart has any items !";
 
     let goBackButton = document.createElement("a");
     goBackButton.textContent = "Get back to the homepage !";
-    goBackButton.classList.add("btn", "btn-outline-danger");
+    goBackButton.classList.add(
+      "btn",
+      "btn-outline-danger",
+      "col-sm-12",
+      "col-md-5"
+    );
     goBackButton.setAttribute("href", "../index.html");
-    document.getElementsByClassName("container")[1].classList.add("flex-column");
+    document
+      .getElementsByClassName("container")[1]
+      .classList.add("flex-column");
     document.getElementsByClassName("container")[1].appendChild(noProductError);
     document.getElementsByClassName("container")[1].appendChild(goBackButton);
   }
-
 };
 
-function checkOutForm() {
+function createTableHeader(){
+  let array = ["Name", "Quantity", "Price"];
+  let tableHeader = document.createElement("thead");
+  let tableLineHeader = document.createElement("tr");
+  for (j in array) {
+    let tableCellHeader = document.createElement("th");
+    tableCellHeader.textContent = array[j];
+    tableLineHeader.append(tableCellHeader);
+  }
+  tableHeader.append(tableLineHeader);
+  return(tableHeader);
+}
 
-    // create array and put product id the number of times
-    // they were put into the cart (cartProduct[i].qty)
-    productsArray = [];
-    for (i in cartProduct) {
-      let x = 0;
-      while (x < cartProduct[i].qty) {
-        productsArray.push(i);
-        x++;
+function createTableBody(){
+  let tableBody = document.createElement("tbody");
+  for (i in cartProduct) {
+    let valueArray = Object.values(cartProduct[i]); // convert parameters to array
+    let tableLine = document.createElement("tr");
+    for (let x = 0; x < 3; x++) {
+      let tableCell = document.createElement("th");
+      if (x == 2) {
+        let price = Math.round(valueArray[x] * valueArray[x - 1]) / 100;
+        cartTotal = price + cartTotal;
+        tableCell.textContent = Math.round(valueArray[x] / 100) + "$";
+      } else {
+        tableCell.textContent = valueArray[x];
       }
+      tableLine.appendChild(tableCell);
     }
+    tableBody.appendChild(tableLine);
+  }
+  return(tableBody);
+}
 
-    const options = {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({
-          contact: {
-            firstName: document.getElementById('inputFirstName').value,
-            lastName: document.getElementById('inputLastName').value,
-            address: document.getElementById('inputAddress').value,
-            city: document.getElementById('inputCity').value,
-            email: document.getElementById('inputEmail').value,
-          },
-          products: productsArray, 
-        })
+function sendForm() {
+  var firstName = document.getElementById("inputFirstName").value;
+  var lastName = document.getElementById("inputLastName").value;
+  var address = document.getElementById("inputAddress").value;
+  var city = document.getElementById("inputCity").value;
+  var email = document.getElementById("inputEmail").value;
+
+  productsArray = [];
+  for (i in cartProduct) {
+    let x = 0;
+    while (x < cartProduct[i].qty) {
+      productsArray.push(i);
+      x++;
     }
-    let rspStatus;
-    fetch('http://localhost:3000/api/furniture/order/', options)
-      .then(response => {
-        rspStatus = response.status;
-        return response.json();
-      })
-      .then(data => {
-        if (rspStatus != "400") {
-          showOrderId(data.orderId);
-          clearCart();
-        }
-        else {
-          alert('Something went wrong. Please try again !');
-        }
-      })
-      .catch(error => {
-        console.log(error);
-      });
+  }
+
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify({
+      contact: {
+        firstName: firstName,
+        lastName: lastName,
+        address: address,
+        city: city,
+        email: email,
+      },
+      products: productsArray,
+    }),
+  };
+
+  fetch("http://localhost:3000/api/furniture/order/", options)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      showOrderId(data.orderId);
+      clearCart();
+    })
+    .catch((error) => {
+      alert("Something went wrong. Please try again!\n" + error);
+    });
+}
+
+function clearCart() {
+  localStorage.clear();
+  location.reload();
 }
 
 function showOrderId(orderId) {
-  alert('This is your order ID:' + orderId);
+
+  
+
+  alert(orderId);
+  return 0;
 }
